@@ -76,19 +76,74 @@ public class VehicleDao {
         return vehicles;
     }
 
-    public List<Vehicle> searchByMakeModel(String make, String model) {
-        // TODO: Implement the logic to search vehicles by make and model
-        return new ArrayList<>();
+    public List<Vehicle> searchByMakeModel(String make, String model)
+    {
+        String sql = "SELECT * FROM vehicles WHERE make = ? AND model = ?";
+        List<Vehicle> vehicles = new ArrayList<>();
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql))
+        {
+            stmt.setString(1, make);
+            stmt.setString(2, model);
+            try (ResultSet resultSet = stmt.executeQuery()) {
+                while (resultSet.next())
+                {
+                    vehicles.add(createVehicleFromResultSet(resultSet));
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return vehicles;
     }
 
-    public List<Vehicle> searchByYearRange(int minYear, int maxYear) {
-        // TODO: Implement the logic to search vehicles by year range
-        return new ArrayList<>();
+    public List<Vehicle> searchByYearRange(int minYear, int maxYear)
+    {
+        String sql = "SELECT * FROM vehicles WHERE year BETWEEN ? AND ?";
+        List<Vehicle> vehicles = new ArrayList<>();
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql))
+        {
+            stmt.setInt(1, minYear);
+            stmt.setInt(2, maxYear);
+            try (ResultSet resultSet = stmt.executeQuery())
+            {
+                while (resultSet.next())
+                {
+                    vehicles.add(createVehicleFromResultSet(resultSet));
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return vehicles;
     }
 
-    public List<Vehicle> searchByColor(String color) {
-        // TODO: Implement the logic to search vehicles by color
-        return new ArrayList<>();
+    public List<Vehicle> searchByColor(String color)
+    {
+        String sql = "SELECT * FROM vehicles WHERE color = ?";
+        List<Vehicle> vehicles = new ArrayList<>();
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql))
+        {
+            stmt.setString(1, color);
+            try (ResultSet resultSet = stmt.executeQuery())
+            {
+                while (resultSet.next())
+                {
+                    vehicles.add(createVehicleFromResultSet(resultSet));
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return vehicles;
     }
 
     public List<Vehicle> searchByMileageRange(int minMileage, int maxMileage) {
