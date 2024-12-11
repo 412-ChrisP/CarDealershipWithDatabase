@@ -2,16 +2,15 @@
 
 ## Description of the Project
 
-Briefly describe what this Java console application does. Mention its purpose and who the intended users are. Explain the main functionality and what problems it aims to solve.
-
-![Class Diagram](path/to/your/class_diagram.png)
+This Java console application is designed for managing a car dealership's inventory, sales, and lease contracts.
+The application provides an interface for managing vehicle operations and data is stored in a MySQL database.
 
 ## User Stories
 
-List the user stories that guided the development of your application. Format these stories as: "As a [type of user], I want [some goal] so that [some reason]."
-
-- As a user, I want to be able to input my data, so that the application can process it accordingly.
-- As a user, I want to receive immediate feedback, so I can understand what to do next.
+- As a user, I want to search for vehicles by different criteria, so that I can quickly find cars that meet customer needs.
+- As a user, I want to add new vehicles to the inventory, so that the dealership's database stays up-to-date.
+- As a user, I want to create sales and lease contracts, so that transactions are documented properly.
+- As a user, I want to remove vehicles that have been sold or leased, so that the inventory remains accurate.
 
 ## Setup
 
@@ -34,37 +33,29 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 ## Technologies Used
 
-- Java: Mention the version you are using.
-- Any additional libraries or frameworks used in the project.
+- Java 17
+- MySQL: For storing vehicle, inventory, and contract data.
+- Apache Commons DBCP2
 
 ## Demo
 
-Include screenshots or GIFs that show your application in action. Use tools like [Giphy Capture](https://giphy.com/apps/giphycapture) to record a GIF of your application.
-
-![Application Screenshot](path/to/your/screenshot.png)
+![Screenshot 2024-12-11 000243.png](Screenshot%202024-12-11%20000243.png)
+![Screenshot 2024-12-11 000459.png](Screenshot%202024-12-11%20000459.png)
+![Screenshot 2024-12-11 000557.png](Screenshot%202024-12-11%20000557.png)
 
 ## Future Work
 
-Outline potential future enhancements or functionalities you might consider adding:
-
-- Additional feature to be developed.
-- Improvement of current functionalities.
-
-## Resources
-
-List resources such as tutorials, articles, or documentation that helped you during the project.
-
-- [Java Programming Tutorial](https://www.example.com)
-- [Effective Java](https://www.example.com)
+- User Authentication: Add login functionality access to authorized users.
+- Graphical User Interface (GUI)
+- Vehicle Status Updates
 
 ## Team Members
 
-- **Name 1** - Specific contributions or roles.
-- **Name 2** - Specific contributions or roles.
+- **Chris Pham** - Project developer
 
 ## Thanks
 
 Express gratitude towards those who provided help, guidance, or resources:
 
-- Thank you to [Mentor's Name] for continuous support and guidance.
+- Thank you to [Raymond] for continuous support and guidance.
 - A special thanks to all teammates for their dedication and teamwork.
