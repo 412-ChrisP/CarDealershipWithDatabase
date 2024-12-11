@@ -8,9 +8,10 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class SalesDao {
-    private DataSource dataSource;
+    private final DataSource dataSource;
 
-    public SalesDao(DataSource dataSource) {
+    public SalesDao(DataSource dataSource)
+    {
         this.dataSource = dataSource;
     }
 

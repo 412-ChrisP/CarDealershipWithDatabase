@@ -16,11 +16,11 @@ import java.util.UUID;
 
 public class Main {
     public static void main(String[] args) {
-        String username = args[0];
-        String password = args[1];
+        String username = "root";
+        String password = "CPham213";
 
         BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setUrl("jdbc:mysql://localhost:3306/car_dealership");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/cardealership");
 
         dataSource.setUsername(username);
         dataSource.setPassword(password);
@@ -37,11 +37,11 @@ public class Main {
         boolean exit = false;
         while (!exit) {
             System.out.println("Main Menu:");
-            System.out.println("1. Search vehicles");
-            System.out.println("2. Add a vehicle");
-            System.out.println("3. Add a contract");
-            System.out.println("4. Remove a vehicle");
-            System.out.println("5. Exit");
+            System.out.println("    1. Search vehicles");
+            System.out.println("    2. Add a vehicle");
+            System.out.println("    3. Add a contract");
+            System.out.println("    4. Remove a vehicle");
+            System.out.println("    5. Exit");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume the newline character

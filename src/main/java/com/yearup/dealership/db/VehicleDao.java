@@ -7,10 +7,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VehicleDao {
+public class VehicleDao
+{
     private final DataSource dataSource;
 
-    public VehicleDao(DataSource dataSource) {
+    public VehicleDao(DataSource dataSource)
+    {
         this.dataSource = dataSource;
     }
 

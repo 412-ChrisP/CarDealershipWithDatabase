@@ -5,10 +5,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class InventoryDao {
-    private DataSource dataSource;
+public class InventoryDao
+{
+    private final DataSource dataSource;
 
-    public InventoryDao(DataSource dataSource) {
+    public InventoryDao(DataSource dataSource)
+    {
         this.dataSource = dataSource;
     }
 

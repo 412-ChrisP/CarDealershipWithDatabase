@@ -8,9 +8,10 @@ import java.sql.SQLException;
 
 public class LeaseDao
 {
-    private DataSource dataSource;
+    private final DataSource dataSource;
 
-    public LeaseDao(DataSource dataSource) {
+    public LeaseDao(DataSource dataSource)
+    {
         this.dataSource = dataSource;
     }
 
