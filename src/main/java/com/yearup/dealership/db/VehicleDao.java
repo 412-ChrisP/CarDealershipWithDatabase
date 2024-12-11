@@ -37,13 +37,43 @@ public class VehicleDao {
         }
     }
 
-    public void removeVehicle(String VIN) {
-        // TODO: Implement the logic to remove a vehicle
+    public void removeVehicle(String VIN)
+    {
+        String sql = "DELETE FROM vehicles WHERE VIN = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql))
+        {
+            stmt.setString(1, VIN);
+            stmt.executeUpdate();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
     }
 
-    public List<Vehicle> searchByPriceRange(double minPrice, double maxPrice) {
-        // TODO: Implement the logic to search vehicles by price range
-        return new ArrayList<>();
+    public List<Vehicle> searchByPriceRange(double minPrice, double maxPrice)
+    {
+        String sql = "SELECT * FROM vehicles WHERE price BETWEEN ? AND ?";
+        List<Vehicle> vehicles = new ArrayList<>();
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql))
+        {
+            stmt.setDouble(1, minPrice);
+            stmt.setDouble(2, maxPrice);
+            try (ResultSet resultSet = stmt.executeQuery())
+            {
+                while (resultSet.next())
+                {
+                    vehicles.add(createVehicleFromResultSet(resultSet));
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return vehicles;
     }
 
     public List<Vehicle> searchByMakeModel(String make, String model) {
