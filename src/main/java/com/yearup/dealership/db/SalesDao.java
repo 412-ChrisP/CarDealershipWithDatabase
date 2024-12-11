@@ -14,8 +14,21 @@ public class SalesDao {
         this.dataSource = dataSource;
     }
 
-    public void addSalesContract(SalesContract salesContract) {
-        // TODO: Implement the logic to add a sales contract
+    public void addSalesContract(SalesContract salesContract)
+    {
+        String sql = "INSERT INTO sales_contracts (contractId, vehicleVin, saleDate, price) VALUES (?, ?, ?, ?)";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql))
+        {
+            stmt.setInt(1, salesContract.getContractId());
+            stmt.setString(2, salesContract.getVin());
+            stmt.setDate(3, java.sql.Date.valueOf(salesContract.getSaleDate()));
+            stmt.setDouble(4, salesContract.getPrice());
+            stmt.executeUpdate();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
     }
 }
-
