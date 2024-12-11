@@ -146,14 +146,51 @@ public class VehicleDao {
         return vehicles;
     }
 
-    public List<Vehicle> searchByMileageRange(int minMileage, int maxMileage) {
-        // TODO: Implement the logic to search vehicles by mileage range
-        return new ArrayList<>();
+    public List<Vehicle> searchByMileageRange(int minMileage, int maxMileage)
+    {
+        String sql = "SELECT * FROM vehicles WHERE odometer BETWEEN ? AND ?";
+        List<Vehicle> vehicles = new ArrayList<>();
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql))
+        {
+            stmt.setInt(1, minMileage);
+            stmt.setInt(2, maxMileage);
+            try (ResultSet resultSet = stmt.executeQuery())
+            {
+                while (resultSet.next())
+                {
+                    vehicles.add(createVehicleFromResultSet(resultSet));
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return vehicles;
     }
 
-    public List<Vehicle> searchByType(String type) {
-        // TODO: Implement the logic to search vehicles by type
-        return new ArrayList<>();
+    public List<Vehicle> searchByType(String type)
+    {
+        String sql = "SELECT * FROM vehicles WHERE vehicleType = ?";
+        List<Vehicle> vehicles = new ArrayList<>();
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql))
+        {
+            stmt.setString(1, type);
+            try (ResultSet resultSet = stmt.executeQuery())
+            {
+                while (resultSet.next())
+                {
+                    vehicles.add(createVehicleFromResultSet(resultSet));
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return vehicles;
     }
 
     private Vehicle createVehicleFromResultSet(ResultSet resultSet) throws SQLException {
@@ -170,4 +207,3 @@ public class VehicleDao {
         return vehicle;
     }
 }
-
